@@ -529,8 +529,8 @@ These will be addressed in Phase 3 after the critical blockers are resolved.
 |-----|--------|--------|----|----|
 | 1. Git Init | ✅ ALREADY COMPLETE | N/A | N/A | Yes (pre-existing) |
 | 2. Dependencies | ✅ MERGED | deps/add-core-dependencies-audit-20251118-1435 | Merged | Yes |
-| 3. Folder Structure | ⏳ PR CREATED | structure/scaffold-project-audit-20251118-1509 | Pending | No |
-| 4. Database Schema | NOT STARTED | - | - | - |
+| 3. Folder Structure | ✅ MERGED | structure/scaffold-project-audit-20251118-1509 | Merged | Yes |
+| 4. Database Schema | 🔄 IN PROGRESS | data/database-schema-audit-20251118-1515 | - | - |
 | 5. Riverpod Setup | NOT STARTED | - | - | - |
 
 **Last Updated:** 2025-11-18 15:09
