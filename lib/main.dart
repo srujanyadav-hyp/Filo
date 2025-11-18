@@ -2,10 +2,14 @@
 // Refs: architecture_diagram_ultra.md line 8, coding_standards_ultra_ultra.md lines 32-38
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'core/providers/provider_observer.dart';
 import 'presentation/theme/app_theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ProviderScope(observers: [FiloProviderObserver()], child: const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
