@@ -528,12 +528,12 @@ These will be addressed in Phase 3 after the critical blockers are resolved.
 | Fix | Status | Branch | PR | Merged |
 |-----|--------|--------|----|----|
 | 1. Git Init | ✅ ALREADY COMPLETE | N/A | N/A | Yes (pre-existing) |
-| 2. Dependencies | NOT STARTED | - | - | - |
+| 2. Dependencies | ✅ PR CREATED | deps/add-core-dependencies-audit-20251118-1435 | Pending | No |
 | 3. Folder Structure | NOT STARTED | - | - | - |
 | 4. Database Schema | NOT STARTED | - | - | - |
 | 5. Riverpod Setup | NOT STARTED | - | - | - |
 
-**Last Updated:** 2025-11-18 14:35
+**Last Updated:** 2025-11-18 14:40
 
 **Note:** Fix 1 (Git Init) was already complete - repository is initialized and connected to https://github.com/srujanyadav-hyp/Filo.git
 
