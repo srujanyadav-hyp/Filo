@@ -8,6 +8,7 @@ import '../theme/app_typography.dart';
 import '../widgets/search_bar_widget.dart';
 import '../widgets/file_card_widget.dart';
 import '../widgets/quick_action_button.dart';
+import 'file_detail_screen.dart';
 
 /// Home/Shelf screen matching screens/home_shelf_ultra.md specifications
 /// Components: Search bar, Quick actions row, Recent list, Folder categories grid
@@ -159,7 +160,31 @@ class HomeScreen extends StatelessWidget {
                         subtitle: file['subtitle'] as String,
                         fileIcon: file['icon'] as IconData,
                         onTap: () {
-                          // TODO: Navigate to file detail
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FileDetailScreen(
+                                fileName: file['name'] as String,
+                                filePath:
+                                    '/storage/emulated/0/Documents/${file['name']}',
+                                fileType: (file['name'] as String)
+                                    .split('.')
+                                    .last,
+                                fileSize: file['name'] == 'Project Proposal.pdf'
+                                    ? 1258291
+                                    : 45056,
+                                dateModified: DateTime.now().subtract(
+                                  const Duration(hours: 2),
+                                ),
+                                dateCreated: DateTime.now().subtract(
+                                  const Duration(days: 7),
+                                ),
+                                tags: file['name'] == 'Project Proposal.pdf'
+                                    ? ['Work', 'Important']
+                                    : [],
+                              ),
+                            ),
+                          );
                         },
                         onMorePressed: () {
                           // TODO: Show file options menu
