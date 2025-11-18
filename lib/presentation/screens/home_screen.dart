@@ -9,6 +9,7 @@ import '../widgets/search_bar_widget.dart';
 import '../widgets/file_card_widget.dart';
 import '../widgets/quick_action_button.dart';
 import 'file_detail_screen.dart';
+import 'activity_log_screen.dart';
 
 /// Home/Shelf screen matching screens/home_shelf_ultra.md specifications
 /// Components: Search bar, Quick actions row, Recent list, Folder categories grid
@@ -91,7 +92,12 @@ class HomeScreen extends StatelessWidget {
                           icon: Icons.history,
                           label: 'Activity',
                           onPressed: () {
-                            // TODO: Navigate to activity log
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ActivityLogScreen(),
+                              ),
+                            );
                           },
                         ),
                       ],
