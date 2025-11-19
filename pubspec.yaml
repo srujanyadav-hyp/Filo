@@ -53,6 +53,9 @@ dependencies:
   shared_preferences: ^2.2.2
   package_info_plus: ^8.0.2
   
+  # Permissions (Phase 5 F13)
+  permission_handler: ^11.3.1
+  
   # Navigation
   go_router: ^14.6.2
   
