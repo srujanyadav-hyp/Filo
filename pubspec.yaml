@@ -59,6 +59,10 @@ dependencies:
   google_mlkit_text_recognition: ^0.13.1
   google_mlkit_image_labeling: ^0.12.0
   crypto: ^3.0.5
+  
+  # Semantic search (F10 requirements - search_architecture_ultra.md)
+  onnxruntime: ^1.4.1
+  vector_math: ^2.1.4
 
 dev_dependencies:
   flutter_test:
