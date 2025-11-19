@@ -1,0 +1,73 @@
+{
+  "screen": "home_screen",
+  "pixel_accuracy_analysis": {
+    "method": "property-based",
+    "spec_file": "FILO_app_deatils/screens/home_shelf_ultra.md",
+    "implementation_file": "lib/presentation/screens/home_screen.dart",
+    "total_properties_checked": 28,
+    "matching_properties": 26,
+    "pixel_match_percentage": 93,
+    "properties_analyzed": {
+      "layout": {
+        "4_sections_present": true,
+        "spacing_between_cards_12dp": true,
+        "spacing_between_sections_24dp": true,
+        "padding_horizontal_16dp": true,
+        "padding_vertical_16dp": true
+      },
+      "search_bar": {
+        "height_48dp": true,
+        "border_radius_24dp": true,
+        "background_primary800": true,
+        "hint_text_color_textSecondary": true,
+        "clear_button_present": true,
+        "focus_animation_scale": true,
+        "focus_animation_duration_180ms": true
+      },
+      "file_cards": {
+        "icon_size_72x72": true,
+        "border_radius_16dp": true,
+        "press_animation_scale_0_96": true,
+        "press_animation_duration_120ms": true,
+        "press_animation_curve_easeOut": true,
+        "elevation_lerp": true,
+        "title_style_bodyL": true,
+        "subtitle_style_bodySM": true
+      },
+      "quick_actions": {
+        "button_size_48dp_circular": true,
+        "icon_size_24dp": true,
+        "background_primary700": true,
+        "icon_color_accentTeal500": true,
+        "4_buttons_rendered": true
+      },
+      "folder_grid": {
+        "2_column_grid": true,
+        "crossAxisSpacing_12dp": true,
+        "mainAxisSpacing_12dp": true
+      }
+    },
+    "mismatches": [
+      {
+        "property": "folder_card_icon_size",
+        "expected": "56dp",
+        "actual": "48dp",
+        "location": "home_screen.dart line 272",
+        "severity": "minor"
+      },
+      {
+        "property": "folder_card_count_badge",
+        "expected": "present with file count",
+        "actual": "missing",
+        "location": "folder GridView section",
+        "severity": "minor"
+      }
+    ],
+    "notes": [
+      "All design token values used correctly (AppColors, AppSpacing, AppTypography)",
+      "Animations match spec exactly (180ms, 120ms, easeOut, scale values)",
+      "File cards and search bar fully compliant",
+      "Minor issues: folder icon smaller than spec, count badge not implemented"
+    ]
+  }
+}

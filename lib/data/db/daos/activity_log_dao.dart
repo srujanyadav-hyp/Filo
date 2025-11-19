@@ -10,7 +10,7 @@ part 'activity_log_dao.g.dart';
 @DriftAccessor(tables: [ActivityLog])
 class ActivityLogDao extends DatabaseAccessor<FiloDatabase>
     with _$ActivityLogDaoMixin {
-  ActivityLogDao(FiloDatabase db) : super(db);
+  ActivityLogDao(super.db);
 
   // Get all activity logs
   Future<List<ActivityLogEntry>> getAllLogs() => (select(

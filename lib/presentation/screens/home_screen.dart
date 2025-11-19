@@ -9,6 +9,7 @@ import '../widgets/search_bar_widget.dart';
 import '../widgets/file_card_widget.dart';
 import '../widgets/quick_action_button.dart';
 import 'file_detail_screen.dart';
+import 'settings_screen.dart';
 import 'activity_log_screen.dart';
 import 'search_results_screen.dart';
 
@@ -28,8 +29,9 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.settings_outlined),
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Settings screen coming soon')),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsScreen()),
               );
             },
           ),

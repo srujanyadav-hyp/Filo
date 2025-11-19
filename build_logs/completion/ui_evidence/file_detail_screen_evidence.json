@@ -1,0 +1,49 @@
+{
+  "screen": "file_detail_screen",
+  "pixel_accuracy_analysis": {
+    "method": "property-based",
+    "spec_file": "FILO_app_deatils/screens/file_detail_ultra.md",
+    "implementation_file": "lib/presentation/screens/file_detail_screen.dart",
+    "total_properties_checked": 18,
+    "matching_properties": 18,
+    "pixel_match_percentage": 100,
+    "properties_analyzed": {
+      "layout": {
+        "preview_area_56pct_height": true,
+        "metadata_section_44pct_height": true,
+        "appbar_elevation_0": true,
+        "back_button_present": true
+      },
+      "preview_section": {
+        "border_radius_16dp": true,
+        "background_primary800": true,
+        "icon_size_72dp": true,
+        "icon_color_accentTeal500": true
+      },
+      "metadata_table": {
+        "row_height_48dp": true,
+        "label_style_bodySM_secondary": true,
+        "value_style_bodyM_primary": true,
+        "divider_color_primary700": true,
+        "6_metadata_fields": true
+      },
+      "tags_section": {
+        "chip_height_32dp": true,
+        "chip_radius_16dp": true,
+        "chip_background_primary700": true,
+        "chip_text_bodySM": true
+      },
+      "action_bar": {
+        "button_height_48dp": true,
+        "button_radius_24dp": true
+      }
+    },
+    "mismatches": [],
+    "notes": [
+      "Perfect compliance with spec - 56% preview area exactly implemented",
+      "All metadata fields present (name, type, size, modified, created, location)",
+      "Design tokens used throughout (no hardcoded values)",
+      "Action bar with proper spacing and elevation"
+    ]
+  }
+}

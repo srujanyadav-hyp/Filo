@@ -1,7 +1,6 @@
 // FILO Widget Tests
 // Basic smoke test for app startup
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:filo/main.dart';
 
