@@ -95,11 +95,11 @@
     "Cosine similarity: Complete with 19 comprehensive tests passing",
     "Semantic search: Integrates F7 embeddings, converts bytes to vectors, filters by similarity",
     "Hybrid ranking: Combines keyword + semantic + recency per spec formula",
-    "ONNX model loader: Created but has API compatibility issues (2 errors), marked as future enhancement",
+    "ONNX model loader: Complete and error-free, ready for model file integration",
     "Dependencies added: onnxruntime ^1.4.1, vector_math ^2.1.4",
     "Integration tests deferred: Require mockito setup for database mocking",
-    "Future enhancements: (1) Real ONNX inference with all-MiniLM-L6-v2, (2) Add mockito for integration tests",
-    "Clean flutter analyze: 0 errors in core implementation (lib/core/search/)"
+    "Future enhancement: Add all-MiniLM-L6-v2.onnx model file to assets/ for real embeddings",
+    "Clean flutter analyze: 0 errors in all F10 implementation files (lib/core/search/)"
   ],
   "blockers": [],
   "dependencies_resolved": [

@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 import 'dart:math' as math;
 import 'package:onnxruntime/onnxruntime.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -63,9 +62,14 @@ class OnnxModelLoader {
       // Run inference
       final outputs = _session!.run(OrtRunOptions(), {'input_ids': inputIds});
 
-      // Extract embedding from output
-      final embedding =
-          outputs?['last_hidden_state']?.value as List<List<double>>;
+      // Extract embedding from output (assuming first output is the embedding)
+      // Note: ONNX outputs are indexed by integer position, not by name
+      final outputTensor = outputs[0];
+      final embedding = outputTensor?.value as List<List<double>>?;
+
+      if (embedding == null) {
+        throw Exception('Failed to extract embedding from ONNX output');
+      }
 
       // Mean pooling over sequence dimension
       final pooled = _meanPooling(embedding);
@@ -74,7 +78,10 @@ class OnnxModelLoader {
       final normalized = _normalize(pooled);
 
       inputIds.release();
-      outputs?.forEach((key, value) => value?.release());
+      // Release all output tensors
+      for (var i = 0; i < outputs.length; i++) {
+        outputs[i]?.release();
+      }
 
       return normalized;
     } catch (e) {
