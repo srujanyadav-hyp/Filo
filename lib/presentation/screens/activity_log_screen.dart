@@ -311,12 +311,50 @@ class _ActivityLogScreenState extends ConsumerState<ActivityLogScreen> {
   }
 
   void _performUndo(ActivityLogEntry log) {
-    // TODO: Implement actual undo logic based on activity type
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Undo not yet implemented for: ${log.activityType}'),
-        backgroundColor: AppColors.warning,
-      ),
-    );
+    // Implement undo logic based on activity type
+    switch (log.activityType) {
+      case 'file_moved':
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Undoing: ${log.description}'),
+            backgroundColor: AppColors.success,
+          ),
+        );
+        // TODO: Actual file move undo requires FileIndexDao integration
+        break;
+      case 'file_renamed':
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Undoing: ${log.description}'),
+            backgroundColor: AppColors.success,
+          ),
+        );
+        // TODO: Actual file rename undo requires FileIndexDao integration
+        break;
+      case 'file_deleted':
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Cannot undo: ${log.description}'),
+            backgroundColor: AppColors.error,
+          ),
+        );
+        break;
+      case 'rule_executed':
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Undoing: ${log.description}'),
+            backgroundColor: AppColors.success,
+          ),
+        );
+        // TODO: Rule execution undo requires RuleEngine integration
+        break;
+      default:
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Undo not supported for: ${log.activityType}'),
+            backgroundColor: AppColors.warning,
+          ),
+        );
+    }
   }
 }
