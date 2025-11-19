@@ -60,6 +60,13 @@ class FilesDao extends DatabaseAccessor<FiloDatabase> with _$FilesDaoMixin {
   Future<List<FileIndexEntry>> getFilesByIds(List<int> ids) =>
       (select(filesIndex)..where((f) => f.id.isIn(ids))).get();
 
+  // Get recent files ordered by modification date (Phase 5 Task 3)
+  Future<List<FileIndexEntry>> getRecentFiles({int limit = 10}) =>
+      (select(filesIndex)
+            ..orderBy([(f) => OrderingTerm.desc(f.modifiedAt)])
+            ..limit(limit))
+          .get();
+
   // Update file URI (for move operations)
   Future<int> updateFileUri(int id, String newUri) =>
       (update(filesIndex)..where((f) => f.id.equals(id))).write(
