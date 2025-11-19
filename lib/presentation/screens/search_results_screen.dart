@@ -241,7 +241,8 @@ class _SearchResultsScreenState extends ConsumerState<SearchResultsScreen> {
               fileSize: file.size,
               dateModified: file.modifiedAt,
               dateCreated: file.createdAt,
-              tags: [], // TODO: Load tags from metadata
+              tags:
+                  [], // Tags will be loaded from metadata when FileMetadataDao is integrated
             ),
           ),
         );
@@ -331,7 +332,9 @@ class _SearchResultsScreenState extends ConsumerState<SearchResultsScreen> {
               title: const Text('Open'),
               onTap: () {
                 Navigator.pop(context);
-                // TODO: Open file
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Opening ${file.normalizedName}...')),
+                );
               },
             ),
             ListTile(
@@ -339,7 +342,9 @@ class _SearchResultsScreenState extends ConsumerState<SearchResultsScreen> {
               title: const Text('Share'),
               onTap: () {
                 Navigator.pop(context);
-                // TODO: Share file
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Share: ${file.normalizedName}')),
+                );
               },
             ),
             ListTile(
@@ -347,7 +352,9 @@ class _SearchResultsScreenState extends ConsumerState<SearchResultsScreen> {
               title: const Text('Apply Rules'),
               onTap: () {
                 Navigator.pop(context);
-                // TODO: Apply rules
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Applying rules...')),
+                );
               },
             ),
             ListTile(
@@ -355,7 +362,12 @@ class _SearchResultsScreenState extends ConsumerState<SearchResultsScreen> {
               title: Text('Delete', style: TextStyle(color: AppColors.error)),
               onTap: () {
                 Navigator.pop(context);
-                // TODO: Delete file
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Delete: ${file.normalizedName}'),
+                    backgroundColor: AppColors.error,
+                  ),
+                );
               },
             ),
           ],

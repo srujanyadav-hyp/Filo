@@ -28,7 +28,9 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.settings_outlined),
             onPressed: () {
-              // TODO: Navigate to settings
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Settings screen coming soon')),
+              );
             },
           ),
         ],
@@ -76,22 +78,40 @@ class HomeScreen extends StatelessWidget {
                         QuickActionButton(
                           icon: Icons.add,
                           label: 'Add Files',
-                          onPressed: () {
-                            // TODO: Add files action
+                          onPressed: () async {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'File picker integration pending',
+                                ),
+                              ),
+                            );
                           },
                         ),
                         QuickActionButton(
                           icon: Icons.rule,
                           label: 'Rules',
                           onPressed: () {
-                            // TODO: Navigate to rules
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'Rule builder requires database setup',
+                                ),
+                              ),
+                            );
                           },
                         ),
                         QuickActionButton(
                           icon: Icons.folder_outlined,
                           label: 'Browse',
                           onPressed: () {
-                            // TODO: Browse files
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const SearchResultsScreen(),
+                              ),
+                            );
                           },
                         ),
                         QuickActionButton(
@@ -199,7 +219,7 @@ class HomeScreen extends StatelessWidget {
                           );
                         },
                         onMorePressed: () {
-                          // TODO: Show file options menu
+                          _showFileOptionsMenu(context, mockFiles[index]);
                         },
                       ),
                     );
@@ -250,7 +270,11 @@ class HomeScreen extends StatelessWidget {
                     return Card(
                       child: InkWell(
                         onTap: () {
-                          // TODO: Navigate to folder view
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Opening ${folder['name']}...'),
+                            ),
+                          );
                         },
                         borderRadius: BorderRadius.circular(12),
                         child: Padding(
@@ -302,10 +326,56 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // TODO: Add quick action (file picker)
+        onPressed: () async {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('File picker integration pending')),
+          );
         },
         child: const Icon(Icons.add),
+      ),
+    );
+  }
+
+  void _showFileOptionsMenu(BuildContext context, Map<String, Object> file) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Container(
+        padding: EdgeInsets.all(AppSpacing.paddingMedium),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.share),
+              title: const Text('Share'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Share functionality pending')),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.rule),
+              title: const Text('Apply Rule'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Rule application pending')),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.delete),
+              title: const Text('Delete'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Delete functionality pending')),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

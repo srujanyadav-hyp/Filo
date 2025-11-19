@@ -39,13 +39,15 @@ class FileDetailScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.share_outlined),
             onPressed: () {
-              // TODO: Share file
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text('Share: $fileName')));
             },
           ),
           IconButton(
             icon: const Icon(Icons.more_vert),
             onPressed: () {
-              // TODO: Show options menu
+              _showOptionsMenu(context);
             },
           ),
         ],
@@ -221,7 +223,9 @@ class FileDetailScreen extends StatelessWidget {
             Expanded(
               child: OutlinedButton.icon(
                 onPressed: () {
-                  // TODO: Open file
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Opening $fileName...')),
+                  );
                 },
                 icon: const Icon(Icons.open_in_new),
                 label: const Text('Open'),
@@ -238,7 +242,9 @@ class FileDetailScreen extends StatelessWidget {
             Expanded(
               child: ElevatedButton.icon(
                 onPressed: () {
-                  // TODO: Apply rules
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Applying rules...')),
+                  );
                 },
                 icon: const Icon(Icons.rule),
                 label: const Text('Apply Rules'),
@@ -289,5 +295,49 @@ class FileDetailScreen extends StatelessWidget {
     if (diff.inDays < 7) return '${diff.inDays} days ago';
 
     return '${date.day}/${date.month}/${date.year}';
+  }
+
+  void _showOptionsMenu(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Container(
+        padding: EdgeInsets.all(AppSpacing.paddingMedium),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.edit),
+              title: const Text('Rename'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Rename functionality pending')),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.drive_file_move),
+              title: const Text('Move'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Move functionality pending')),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.delete),
+              title: const Text('Delete'),
+              onTap: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Delete functionality pending')),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
