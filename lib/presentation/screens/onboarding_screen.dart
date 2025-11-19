@@ -222,7 +222,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return OnboardingPage(
       illustration: _buildIllustration(
         icon: Icons.auto_awesome,
-        color: AppColors.accentPurple500,
+        color: AppColors.info,
       ),
       title: 'Powerful Features',
       subtitle: 'Organize and find files effortlessly',
@@ -239,14 +239,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             icon: Icons.auto_fix_high,
             title: 'Auto-organize',
             description: 'Files organized automatically with AI',
-            iconColor: AppColors.accentPurple500,
+            iconColor: AppColors.info,
           ),
           SizedBox(height: AppSpacing.paddingMedium),
           FeatureCard(
             icon: Icons.rule,
             title: 'Rule Automation',
             description: 'Create custom rules for file management',
-            iconColor: AppColors.accentOrange500,
+            iconColor: AppColors.warning,
           ),
         ],
       ),
@@ -257,7 +257,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return OnboardingPage(
       illustration: _buildIllustration(
         icon: Icons.folder_open,
-        color: AppColors.accentOrange500,
+        color: AppColors.warning,
       ),
       title: 'Allow Storage Access',
       subtitle: 'FILO needs access to organize your files',
