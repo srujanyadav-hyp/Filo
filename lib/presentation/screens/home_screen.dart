@@ -2,6 +2,7 @@
 // Refs: screens/home_shelf_ultra.md (full file), ui_blueprint_ultra_ultra.md lines 50-80
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
 import '../theme/app_typography.dart';
@@ -12,12 +13,95 @@ import 'file_detail_screen.dart';
 import 'settings_screen.dart';
 import 'activity_log_screen.dart';
 import 'search_results_screen.dart';
+import '../../core/providers/database_provider.dart';
+import '../../data/db/database.dart';
 
 /// Home/Shelf screen matching screens/home_shelf_ultra.md specifications
 /// Components: Search bar, Quick actions row, Recent list, Folder categories grid
 /// Spacing: between cards 12dp, between sections 24dp
-class HomeScreen extends StatelessWidget {
+///
+/// Phase 5 Task 3: Integrated with FilesDao to load real file data
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  List<FileIndexEntry>? _recentFiles;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadRecentFiles();
+  }
+
+  Future<void> _loadRecentFiles() async {
+    try {
+      final database = ref.read(databaseProvider);
+      final files = await database.filesDao.getRecentFiles(limit: 10);
+      setState(() {
+        _recentFiles = files;
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        _recentFiles = [];
+        _isLoading = false;
+      });
+    }
+  }
+
+  String _formatFileSubtitle(FileIndexEntry file) {
+    // Format time ago
+    final diff = DateTime.now().difference(file.modifiedAt);
+    String timeAgo;
+    if (diff.inMinutes < 60) {
+      timeAgo = '${diff.inMinutes}m ago';
+    } else if (diff.inHours < 24) {
+      timeAgo = '${diff.inHours}h ago';
+    } else if (diff.inDays < 7) {
+      timeAgo = '${diff.inDays}d ago';
+    } else {
+      timeAgo =
+          '${file.modifiedAt.day}/${file.modifiedAt.month}/${file.modifiedAt.year}';
+    }
+
+    // Format file size
+    String size;
+    if (file.size < 1024) {
+      size = '${file.size} B';
+    } else if (file.size < 1024 * 1024) {
+      size = '${(file.size / 1024).toStringAsFixed(1)} KB';
+    } else if (file.size < 1024 * 1024 * 1024) {
+      size = '${(file.size / (1024 * 1024)).toStringAsFixed(1)} MB';
+    } else {
+      size = '${(file.size / (1024 * 1024 * 1024)).toStringAsFixed(1)} GB';
+    }
+
+    return '$timeAgo • $size';
+  }
+
+  IconData _getFileIcon(String fileName) {
+    final ext = fileName.split('.').last.toLowerCase();
+    if (ext == 'pdf') return Icons.picture_as_pdf;
+    if (['png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp'].contains(ext)) {
+      return Icons.image;
+    }
+    if (['txt', 'md', 'doc', 'docx'].contains(ext)) return Icons.description;
+    if (['zip', 'rar', '7z', 'tar', 'gz'].contains(ext)) {
+      return Icons.folder_zip;
+    }
+    if (['mp4', 'avi', 'mkv', 'mov', 'wmv'].contains(ext)) {
+      return Icons.video_file;
+    }
+    if (['mp3', 'wav', 'flac', 'aac', 'ogg'].contains(ext)) {
+      return Icons.audio_file;
+    }
+    return Icons.insert_drive_file;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,81 +239,87 @@ class HomeScreen extends StatelessWidget {
             ),
 
             // Recent files list with 12dp spacing between cards
-            SliverPadding(
-              padding: EdgeInsets.symmetric(
-                horizontal: AppSpacing.paddingMedium,
-              ),
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    // Mock data - will be replaced with provider data
-                    final mockFiles = [
-                      {
-                        'name': 'Project Proposal.pdf',
-                        'subtitle': '2 hours ago • 1.2 MB',
-                        'icon': Icons.picture_as_pdf,
-                      },
-                      {
-                        'name': 'Meeting Notes.txt',
-                        'subtitle': 'Yesterday • 45 KB',
-                        'icon': Icons.description,
-                      },
-                      {
-                        'name': 'Screenshot_20251118.png',
-                        'subtitle': '3 days ago • 856 KB',
-                        'icon': Icons.image,
-                      },
-                    ];
-
-                    if (index >= mockFiles.length) return null;
-
-                    final file = mockFiles[index];
-
-                    return Padding(
-                      padding: EdgeInsets.only(
-                        bottom: AppSpacing.spaceBetweenCards, // 12dp per spec
+            // Phase 5 Task 3: Now loading real data from FilesDao
+            _isLoading
+                ? SliverToBoxAdapter(
+                    child: const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(32.0),
+                        child: CircularProgressIndicator(),
                       ),
-                      child: FileCardWidget(
-                        fileName: file['name'] as String,
-                        subtitle: file['subtitle'] as String,
-                        fileIcon: file['icon'] as IconData,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => FileDetailScreen(
-                                fileName: file['name'] as String,
-                                filePath:
-                                    '/storage/emulated/0/Documents/${file['name']}',
-                                fileType: (file['name'] as String)
-                                    .split('.')
-                                    .last,
-                                fileSize: file['name'] == 'Project Proposal.pdf'
-                                    ? 1258291
-                                    : 45056,
-                                dateModified: DateTime.now().subtract(
-                                  const Duration(hours: 2),
-                                ),
-                                dateCreated: DateTime.now().subtract(
-                                  const Duration(days: 7),
-                                ),
-                                tags: file['name'] == 'Project Proposal.pdf'
-                                    ? ['Work', 'Important']
-                                    : [],
+                    ),
+                  )
+                : _recentFiles == null || _recentFiles!.isEmpty
+                ? SliverToBoxAdapter(
+                    child: Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(AppSpacing.xxxl),
+                        child: Column(
+                          children: [
+                            Icon(
+                              Icons.folder_open,
+                              size: 64,
+                              color: AppColors.textSecondary,
+                            ),
+                            SizedBox(height: AppSpacing.paddingMedium),
+                            Text(
+                              'No files indexed yet',
+                              style: AppTypography.bodyM.copyWith(
+                                color: AppColors.textSecondary,
                               ),
                             ),
-                          );
-                        },
-                        onMorePressed: () {
-                          _showFileOptionsMenu(context, mockFiles[index]);
-                        },
+                          ],
+                        ),
                       ),
-                    );
-                  },
-                  childCount: 3, // Mock count
-                ),
-              ),
-            ),
+                    ),
+                  )
+                : SliverPadding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppSpacing.paddingMedium,
+                    ),
+                    sliver: SliverList(
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                        if (index >= _recentFiles!.length) return null;
+
+                        final file = _recentFiles![index];
+
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            bottom:
+                                AppSpacing.spaceBetweenCards, // 12dp per spec
+                          ),
+                          child: FileCardWidget(
+                            fileName: file.normalizedName,
+                            subtitle: _formatFileSubtitle(file),
+                            fileIcon: _getFileIcon(file.normalizedName),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => FileDetailScreen(
+                                    fileName: file.normalizedName,
+                                    filePath: file.uri,
+                                    fileType: file.mime.split('/').last,
+                                    fileSize: file.size,
+                                    dateModified: file.modifiedAt,
+                                    dateCreated: file.createdAt,
+                                    tags:
+                                        [], // TODO: Load from FileMetadataDao in future
+                                  ),
+                                ),
+                              );
+                            },
+                            onMorePressed: () {
+                              _showFileOptionsMenu(context, {
+                                'name': file.normalizedName,
+                                'uri': file.uri,
+                              });
+                            },
+                          ),
+                        );
+                      }, childCount: _recentFiles!.length),
+                    ),
+                  ),
 
             // 24dp spacing before folder categories
             SliverToBoxAdapter(
