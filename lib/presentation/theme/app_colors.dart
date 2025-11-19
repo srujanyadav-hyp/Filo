@@ -60,6 +60,9 @@ class AppColors {
   /// Disabled text
   static const Color textDisabled = Color(0xFF64748B);
 
+  /// Border color for dividers and outlines
+  static const Color border = Color(0xFF334155);
+
   // GRADIENT COLORS (design_tokens_ultra_ultra.md section 4)
   /// Gradient start: #0F172A with +4% brightness
   static const Color gradientStart = Color(0xFF131C33);
