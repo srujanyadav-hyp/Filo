@@ -10,7 +10,7 @@ part 'rules_dao.g.dart';
 
 @DriftAccessor(tables: [Rules, RuleExecutionLog])
 class RulesDao extends DatabaseAccessor<FiloDatabase> with _$RulesDaoMixin {
-  RulesDao(FiloDatabase db) : super(db);
+  RulesDao(super.db);
 
   // Get all enabled rules ordered by priority
   Future<List<Rule>> getEnabledRules() =>

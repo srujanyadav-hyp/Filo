@@ -36,10 +36,6 @@ class AppTheme {
       onSurface: AppColors.textPrimary,
       surfaceContainerHighest: AppColors.surfaceElevated,
 
-      // Background colors
-      background: AppColors.background,
-      onBackground: AppColors.textPrimary,
-
       // Error colors
       error: AppColors.error,
       onError: AppColors.textPrimary,

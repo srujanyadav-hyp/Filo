@@ -159,7 +159,7 @@ void main() {
     test('darkTheme uses correct background color', () {
       final theme = AppTheme.darkTheme;
       expect(theme.scaffoldBackgroundColor, AppColors.background);
-      expect(theme.colorScheme.background, AppColors.background);
+      expect(theme.colorScheme.surface, AppColors.background);
     });
 
     test('darkTheme uses correct surface color', () {

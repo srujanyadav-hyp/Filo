@@ -1,0 +1,99 @@
+{
+  "features": [
+    {
+      "id": "F1_design_system",
+      "name": "Design System & Theme Tokens",
+      "spec_file": "FILO_app_deatils/design_tokens_ultra_ultra.md",
+      "priority": "P0",
+      "category": "UI Foundation"
+    },
+    {
+      "id": "F2_home_screen",
+      "name": "Home/Shelf Screen UI",
+      "spec_file": "FILO_app_deatils/screens/home_shelf_ultra.md",
+      "priority": "P0",
+      "category": "UI Screens"
+    },
+    {
+      "id": "F3_file_detail",
+      "name": "File Detail Screen UI",
+      "spec_file": "FILO_app_deatils/screens/file_detail_ultra.md",
+      "priority": "P0",
+      "category": "UI Screens"
+    },
+    {
+      "id": "F4_activity_log",
+      "name": "Activity Log Screen & Data Layer",
+      "spec_file": "FILO_app_deatils/screens/activity_log_ultra.md",
+      "priority": "P0",
+      "category": "UI Screens + Data"
+    },
+    {
+      "id": "F5_search_results",
+      "name": "Search Results Screen & Keyword Search",
+      "spec_file": "FILO_app_deatils/screens/search_results_ultra.md",
+      "priority": "P0",
+      "category": "UI Screens + Search"
+    },
+    {
+      "id": "F6_database_layer",
+      "name": "Database Schema & DAOs",
+      "spec_file": "FILO_app_deatils/database_schema_ultra.md",
+      "priority": "P0",
+      "category": "Data Layer"
+    },
+    {
+      "id": "F7_file_indexing",
+      "name": "File Indexing Engine",
+      "spec_file": "FILO_app_deatils/feature_specs_ultra.md#FEATURE1",
+      "priority": "P0",
+      "category": "Core Logic"
+    },
+    {
+      "id": "F8_rule_builder",
+      "name": "Rule Builder & Automation",
+      "spec_file": "FILO_app_deatils/feature_specs_ultra.md#FEATURE2",
+      "priority": "P1",
+      "category": "Core Logic"
+    },
+    {
+      "id": "F9_semantic_search",
+      "name": "Semantic Search & Embeddings",
+      "spec_file": "FILO_app_deatils/search_architecture_ultra.md",
+      "priority": "P1",
+      "category": "Search"
+    },
+    {
+      "id": "F10_rule_preview",
+      "name": "Rule Preview Screen",
+      "spec_file": "FILO_app_deatils/screens/rule_preview_ultra.md",
+      "priority": "P1",
+      "category": "UI Screens"
+    },
+    {
+      "id": "F11_rule_builder_screen",
+      "name": "Rule Builder Screen UI",
+      "spec_file": "FILO_app_deatils/screens/rule_builder_ultra.md",
+      "priority": "P1",
+      "category": "UI Screens"
+    },
+    {
+      "id": "F12_settings",
+      "name": "Settings Screen",
+      "spec_file": "FILO_app_deatils/screens/settings_ultra.md",
+      "priority": "P2",
+      "category": "UI Screens"
+    },
+    {
+      "id": "F13_onboarding",
+      "name": "Onboarding Flow",
+      "spec_file": "FILO_app_deatils/screens/onboarding_ultra.md",
+      "priority": "P2",
+      "category": "UI Screens"
+    }
+  ],
+  "total_features": 13,
+  "p0_features": 6,
+  "p1_features": 4,
+  "p2_features": 3
+}

@@ -1,0 +1,160 @@
+{
+  "F1_design_system": {
+    "implemented": true,
+    "files": [
+      "lib/presentation/theme/app_colors.dart",
+      "lib/presentation/theme/app_typography.dart",
+      "lib/presentation/theme/app_spacing.dart",
+      "lib/presentation/theme/app_elevation.dart",
+      "lib/presentation/theme/app_theme.dart"
+    ],
+    "tests": [
+      "test/presentation/theme/app_theme_test.dart (26 tests)"
+    ],
+    "line_count": 543,
+    "todos": 0
+  },
+  "F2_home_screen": {
+    "implemented": true,
+    "files": [
+      "lib/presentation/screens/home_screen.dart",
+      "lib/presentation/widgets/search_bar_widget.dart",
+      "lib/presentation/widgets/file_card_widget.dart",
+      "lib/presentation/widgets/quick_action_button.dart"
+    ],
+    "tests": [
+      "test/widget_test.dart (1 test - home screen components)"
+    ],
+    "line_count": 862,
+    "todos": 8
+  },
+  "F3_file_detail": {
+    "implemented": true,
+    "files": [
+      "lib/presentation/screens/file_detail_screen.dart"
+    ],
+    "tests": [
+      "INSUFFICIENT DATA - no dedicated tests found"
+    ],
+    "line_count": 293,
+    "todos": 3
+  },
+  "F4_activity_log": {
+    "implemented": true,
+    "files": [
+      "lib/presentation/screens/activity_log_screen.dart",
+      "lib/data/db/tables/activity_log_table.dart",
+      "lib/data/db/daos/activity_log_dao.dart",
+      "lib/core/providers/database_provider.dart"
+    ],
+    "tests": [
+      "test/data/database_test.dart (Activity Log DAO Tests - 2 tests)"
+    ],
+    "line_count": 558,
+    "todos": 1
+  },
+  "F5_search_results": {
+    "implemented": true,
+    "files": [
+      "lib/presentation/screens/search_results_screen.dart",
+      "lib/data/db/daos/search_dao.dart",
+      "lib/data/db/tables/files_fts_table.dart"
+    ],
+    "tests": [
+      "INSUFFICIENT DATA - no dedicated UI tests, DAO covered in database_test.dart"
+    ],
+    "line_count": 423,
+    "todos": 5
+  },
+  "F6_database_layer": {
+    "implemented": true,
+    "files": [
+      "lib/data/db/database.dart",
+      "lib/data/db/tables/files_index_table.dart",
+      "lib/data/db/tables/extracted_text_table.dart",
+      "lib/data/db/tables/image_labels_table.dart",
+      "lib/data/db/tables/embeddings_table.dart",
+      "lib/data/db/tables/rules_table.dart",
+      "lib/data/db/tables/rule_execution_log_table.dart",
+      "lib/data/db/tables/activity_log_table.dart",
+      "lib/data/db/tables/files_fts_table.dart",
+      "lib/data/db/daos/files_dao.dart",
+      "lib/data/db/daos/search_dao.dart",
+      "lib/data/db/daos/rules_dao.dart",
+      "lib/data/db/daos/activity_log_dao.dart"
+    ],
+    "tests": [
+      "test/data/database_test.dart (8 DAO tests covering Files, Rules, Activity Log)"
+    ],
+    "line_count": 1247,
+    "todos": 0
+  },
+  "F7_file_indexing": {
+    "implemented": false,
+    "files": [],
+    "tests": [],
+    "line_count": 0,
+    "todos": 0,
+    "reason": "No file scanning, OCR, or indexing worker implemented. Database schema ready but no execution logic."
+  },
+  "F8_rule_builder": {
+    "implemented": false,
+    "files": [
+      "lib/data/db/tables/rules_table.dart",
+      "lib/data/db/daos/rules_dao.dart"
+    ],
+    "tests": [
+      "test/data/database_test.dart (Rules DAO Tests - 3 tests for data layer only)"
+    ],
+    "line_count": 156,
+    "todos": 0,
+    "reason": "Database schema and DAO complete. No UI screens for rule creation/editing. No rule execution engine."
+  },
+  "F9_semantic_search": {
+    "implemented": false,
+    "files": [
+      "lib/data/db/tables/embeddings_table.dart"
+    ],
+    "tests": [],
+    "line_count": 23,
+    "todos": 0,
+    "reason": "Embeddings table exists but no embedding generation, no cosine similarity search, no hybrid ranking."
+  },
+  "F10_rule_preview": {
+    "implemented": false,
+    "files": [],
+    "tests": [],
+    "line_count": 0,
+    "todos": 0
+  },
+  "F11_rule_builder_screen": {
+    "implemented": false,
+    "files": [],
+    "tests": [],
+    "line_count": 0,
+    "todos": 0
+  },
+  "F12_settings": {
+    "implemented": false,
+    "files": [],
+    "tests": [],
+    "line_count": 0,
+    "todos": 0
+  },
+  "F13_onboarding": {
+    "implemented": false,
+    "files": [],
+    "tests": [],
+    "line_count": 0,
+    "todos": 0
+  },
+  "summary": {
+    "total_features": 13,
+    "fully_implemented": 6,
+    "partially_implemented": 0,
+    "not_implemented": 7,
+    "total_code_lines": 4105,
+    "total_test_lines": "~800 (34 tests passing)",
+    "total_todos": 17
+  }
+}

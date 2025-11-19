@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
 import '../theme/app_typography.dart';
-import '../theme/app_elevation.dart';
 
 /// File card widget matching ui_blueprint_ultra_ultra.md specifications
 /// Layout: |IMG(72x72)| 12dp | VStack(title, meta) | 12dp | ⋮ (48dp hitbox)|

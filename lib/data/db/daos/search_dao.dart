@@ -12,7 +12,7 @@ part 'search_dao.g.dart';
 
 @DriftAccessor(tables: [FilesIndex, ExtractedText, ImageLabels, FilesFts])
 class SearchDao extends DatabaseAccessor<FiloDatabase> with _$SearchDaoMixin {
-  SearchDao(FiloDatabase db) : super(db);
+  SearchDao(super.db);
 
   // Full-text search using FTS5
   Future<List<int>> searchFilesByContent(String query) async {

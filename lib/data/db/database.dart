@@ -40,7 +40,7 @@ class FiloDatabase extends _$FiloDatabase {
   FiloDatabase() : super(_openConnection());
 
   // Test constructor
-  FiloDatabase.forTesting(QueryExecutor executor) : super(executor);
+  FiloDatabase.forTesting(super.executor);
 
   @override
   int get schemaVersion => 1;

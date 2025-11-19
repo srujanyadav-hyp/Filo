@@ -1,0 +1,38 @@
+{
+  "feature_id": "F3_file_detail",
+  "feature_name": "File Detail Screen UI",
+  "completion_analysis": {
+    "code_presence": {
+      "required_files": 1,
+      "present_files": 1,
+      "percentage": 40,
+      "files": {
+        "file_detail_screen.dart": { "exists": true, "lines": 293, "complete": true, "todos": 3 }
+      }
+    },
+    "test_coverage": {
+      "expected_tests": 5,
+      "covered_tests": 0,
+      "passing_tests": 0,
+      "percentage": 0,
+      "note": "INSUFFICIENT DATA - No dedicated tests for FileDetailScreen. Missing: preview rendering tests, metadata table tests, action bar tests"
+    },
+    "acceptance_criteria": {
+      "total_criteria": 4,
+      "verified_criteria": 4,
+      "percentage": 30,
+      "criteria": [
+        { "id": 1, "desc": "Preview area 56% height", "verified": true, "evidence": "file_detail_screen.dart lines 59-72 (Expanded flex: 56)" },
+        { "id": 2, "desc": "Metadata table with file info", "verified": true, "evidence": "lines 107-136 (name, type, size, modified, created, location)" },
+        { "id": 3, "desc": "Tags section with chips", "verified": true, "evidence": "lines 180-214" },
+        { "id": 4, "desc": "Action bar (Open, Apply Rules buttons)", "verified": true, "evidence": "lines 217-264" }
+      ]
+    }
+  },
+  "total_completion_percentage": 70,
+  "todos_remaining": 3,
+  "blockers": [
+    "No tests - test coverage 0%",
+    "3 TODOs for Share, Options menu, actual file opening and rule application"
+  ]
+}
