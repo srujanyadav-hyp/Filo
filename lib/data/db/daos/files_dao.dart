@@ -9,7 +9,7 @@ part 'files_dao.g.dart';
 
 @DriftAccessor(tables: [FilesIndex])
 class FilesDao extends DatabaseAccessor<FiloDatabase> with _$FilesDaoMixin {
-  FilesDao(FiloDatabase db) : super(db);
+  FilesDao(super.db);
 
   // Get all files
   Future<List<FileIndexEntry>> getAllFiles() => select(filesIndex).get();
@@ -59,4 +59,16 @@ class FilesDao extends DatabaseAccessor<FiloDatabase> with _$FilesDaoMixin {
   // Get files by list of IDs
   Future<List<FileIndexEntry>> getFilesByIds(List<int> ids) =>
       (select(filesIndex)..where((f) => f.id.isIn(ids))).get();
+
+  // Update file URI (for move operations)
+  Future<int> updateFileUri(int id, String newUri) =>
+      (update(filesIndex)..where((f) => f.id.equals(id))).write(
+        FilesIndexCompanion(uri: Value(newUri)),
+      );
+
+  // Update file name (for rename operations)
+  Future<int> updateFileName(int id, String newName) =>
+      (update(filesIndex)..where((f) => f.id.equals(id))).write(
+        FilesIndexCompanion(normalizedName: Value(newName)),
+      );
 }
