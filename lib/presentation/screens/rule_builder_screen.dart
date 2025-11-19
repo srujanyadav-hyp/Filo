@@ -2,6 +2,7 @@
 // Refs: feature_specs_ultra.md lines 39-70, interaction_flow_ultra_ultra.md lines 33-40
 
 import 'package:flutter/material.dart';
+import 'package:drift/drift.dart' hide Column;
 import '../../core/rules/rule_engine.dart';
 import '../../data/models/rule_model.dart';
 import '../../data/models/condition_model.dart';
@@ -594,13 +595,24 @@ class _RuleBuilderScreenState extends State<RuleBuilderScreen>
   Future<void> _saveRule() async {
     final rule = _buildCurrentRule();
     try {
-      // Save to database using RulesDao when integrated
-      // await widget.database.rulesDao.insertRule(rule);
+      // Phase 5 Task 3: Now saving to database via RulesDao
+      // Convert RuleModel to RulesCompanion for database insertion
+      final ruleEntry = RulesCompanion.insert(
+        name: _ruleName.isEmpty ? 'Unnamed Rule' : _ruleName,
+        description: Value(rule.metadata.description),
+        conditionsJson: '${rule.conditions}', // Serialize conditions
+        actionsJson: '${rule.actions}', // Serialize actions
+        isEnabled: const Value(true),
+        priority: const Value(0),
+      );
+
+      await widget.database.rulesDao.insertRule(ruleEntry);
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Rule saved successfully'),
-            backgroundColor: Color(0xFF10B981),
+          SnackBar(
+            content: Text('Rule "$_ruleName" saved successfully'),
+            backgroundColor: AppColors.success,
           ),
         );
         Navigator.pop(context, rule);
@@ -610,7 +622,7 @@ class _RuleBuilderScreenState extends State<RuleBuilderScreen>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Failed to save rule: $e'),
-            backgroundColor: Color(0xFFEF4444),
+            backgroundColor: AppColors.error,
           ),
         );
       }
