@@ -10,6 +10,7 @@ import '../widgets/file_card_widget.dart';
 import '../widgets/quick_action_button.dart';
 import 'file_detail_screen.dart';
 import 'activity_log_screen.dart';
+import 'search_results_screen.dart';
 
 /// Home/Shelf screen matching screens/home_shelf_ultra.md specifications
 /// Components: Search bar, Quick actions row, Recent list, Folder categories grid
@@ -41,7 +42,12 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.all(AppSpacing.paddingMedium), // 16dp
                 child: SearchBarWidget(
                   onTap: () {
-                    // TODO: Navigate to search results screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SearchResultsScreen(),
+                      ),
+                    );
                   },
                   readOnly: true, // Tap navigates to search screen
                 ),

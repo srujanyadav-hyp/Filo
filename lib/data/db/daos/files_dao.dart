@@ -55,4 +55,8 @@ class FilesDao extends DatabaseAccessor<FiloDatabase> with _$FilesDaoMixin {
   Future<List<FileIndexEntry>> searchFilesByName(String pattern) => (select(
     filesIndex,
   )..where((f) => f.normalizedName.like('%$pattern%'))).get();
+
+  // Get files by list of IDs
+  Future<List<FileIndexEntry>> getFilesByIds(List<int> ids) =>
+      (select(filesIndex)..where((f) => f.id.isIn(ids))).get();
 }
