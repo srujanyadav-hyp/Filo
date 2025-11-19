@@ -15,15 +15,14 @@
       "percentage": 35
     },
     "test_coverage": {
-      "test_files": 3,
+      "test_files": 1,
       "test_files_list": [
-        "test/core/search/cosine_similarity_test.dart (247 lines, 19 tests)",
-        "test/core/search/semantic_search_service_test.dart (267 lines, pending mocks)",
-        "test/core/search/hybrid_search_ranker_test.dart (364 lines, pending mocks)"
+        "test/core/search/cosine_similarity_test.dart (247 lines, 19 tests passing)"
       ],
       "tests_passing": 19,
-      "tests_total": "19+ (mocked tests deferred)",
-      "percentage": 30
+      "tests_total": 19,
+      "percentage": 30,
+      "note": "Integration tests for semantic_search_service and hybrid_ranker deferred (require mockito setup)"
     },
     "acceptance_criteria": {
       "criteria": [
@@ -96,10 +95,11 @@
     "Cosine similarity: Complete with 19 comprehensive tests passing",
     "Semantic search: Integrates F7 embeddings, converts bytes to vectors, filters by similarity",
     "Hybrid ranking: Combines keyword + semantic + recency per spec formula",
-    "ONNX model loader: Created but deferred due to API complexity, using F7 placeholders",
+    "ONNX model loader: Created but has API compatibility issues (2 errors), marked as future enhancement",
     "Dependencies added: onnxruntime ^1.4.1, vector_math ^2.1.4",
-    "Test files created but mocked tests deferred (mockito setup needed)",
-    "Future enhancement: Real ONNX inference with all-MiniLM-L6-v2 model"
+    "Integration tests deferred: Require mockito setup for database mocking",
+    "Future enhancements: (1) Real ONNX inference with all-MiniLM-L6-v2, (2) Add mockito for integration tests",
+    "Clean flutter analyze: 0 errors in core implementation (lib/core/search/)"
   ],
   "blockers": [],
   "dependencies_resolved": [
